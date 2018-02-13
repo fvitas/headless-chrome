@@ -24,7 +24,11 @@ app.get('/', function(req, res) {
             });
 
             const page = await browser.newPage();
+
+            page.setViewport({ width: 1280, height: 720 })
+
             await page.goto(urlToScreenshot);
+            
             await page.screenshot().then(function(buffer) {
                 res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
                 res.setHeader('Content-Type', 'image/png');
